@@ -4,7 +4,7 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist/js'),
-    filename: 'bundle.js',
+    filename: 'index.js',
     libraryTarget: "commonjs2",
   },
   module: {
@@ -28,6 +28,5 @@ module.exports = {
       }
     ],
   },
-  devtool: 'source-map',
-  mode: 'development',
+  mode: 'production',
 };

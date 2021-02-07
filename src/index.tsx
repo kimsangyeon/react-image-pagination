@@ -1,19 +1,16 @@
 import React, { ReactElement } from 'react';
-
-type WrappedElementType = 'div' | 'section' | 'span';
 interface ImagePaginationProps {
-  ContainerEl: WrappedElementType,
   children: ReactElement,
 }
 
 const ImagePagination = ({
-  ContainerEl,
   children
 }: ImagePaginationProps) => {
   return (
-  <ContainerEl>
+  <div>
     {children}
-  </ContainerEl>
+    <div>test</div>
+  </div>
   );
 };
 
