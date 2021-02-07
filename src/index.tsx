@@ -1,16 +1,44 @@
-import React, { ReactElement } from 'react';
+import React, { useState } from 'react';
+import {
+  Container,
+  Page,
+  Img,
+  Text,
+  PrevNext,
+  DotContainer,
+  Dot
+} from './styled-components/'
+
 interface ImagePaginationProps {
-  children: ReactElement,
+  pages: {
+    src: string,
+    text: string,
+  }[],
 }
 
 const ImagePagination = ({
-  children
+  pages
 }: ImagePaginationProps) => {
+  const [activeIndex] = useState(0);
+
   return (
-  <div>
-    {children}
-    <div>test</div>
-  </div>
+    <>
+      <Container>
+        {pages.map((img, idx) => (
+          <Page key={img.src} active={activeIndex === idx}>
+            <Img src={img.src} />
+            {img.text && <Text>{img.text}</Text>}
+          </Page>
+        ))}
+        <PrevNext type={'prev'}>&#10094;</PrevNext>
+        <PrevNext type={'next'}>&#10095;</PrevNext>  
+      </Container>
+      <DotContainer>
+        {pages.map(_ => (
+          <Dot />
+        ))}
+      </DotContainer>
+    </>
   );
 };
 
