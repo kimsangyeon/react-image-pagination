@@ -23,10 +23,28 @@ module.exports = {
               '@babel/preset-react',
               '@babel/preset-typescript'
             ],
+            plugins: ["babel-plugin-styled-components"]
           }
         }
       }
     ],
   },
   mode: 'production',
+  externals: [
+    // nodeExternals(),
+    {
+      react: {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react'
+      },
+      'react-dom': {
+        root: 'ReactDOM',
+        commonjs2: 'react-dom',
+        commonjs: 'react-dom',
+        amd: 'react-dom'
+      }
+    }
+  ]
 };
