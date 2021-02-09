@@ -1,6 +1,6 @@
 {
   "name": "react-image-pagination",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "This project is a component that can use images like pages",
   "main": "dist/index.js",
   "source": "src/index.tsx",
