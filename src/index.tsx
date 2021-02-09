@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import {
   Container,
   Page,
@@ -7,37 +7,72 @@ import {
   PrevNext,
   DotContainer,
   Dot
-} from './styled-components/'
+} from './styled-components'
 
 interface ImagePaginationProps {
   pages: {
     src: string,
     text: string,
   }[],
+  dotDisplay: boolean,
 }
 
 const ImagePagination = ({
-  pages
+  pages,
+  dotDisplay = true,
 }: ImagePaginationProps) => {
-  const [activeIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeButton, setActiveButton] = useState(false);
+
+  const onClick = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    const { type } = e.target as HTMLAnchorElement;
+    if (type === 'prev' && activeIndex !== 0) {
+      setActiveIndex(activeIndex => activeIndex - 1);
+    } else if (type === 'next' && activeIndex !== pages.length - 1) {
+      setActiveIndex(activeIndex => activeIndex + 1);
+    }
+  }, [pages, activeIndex, setActiveIndex]);
+  const onMouseEnter = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    setActiveButton(true);
+  }, [activeButton, setActiveButton]);
+  const onMouseLeave = useCallback((e: React.MouseEvent) => {
+    e.preventDefault();
+    setActiveButton(false);
+  }, [activeButton, setActiveButton]);
 
   return (
     <>
-      <Container>
-        {pages.map((img, idx) => (
-          <Page key={img.src} active={activeIndex === idx}>
-            <Img src={img.src} />
-            {img.text && <Text>{img.text}</Text>}
-          </Page>
-        ))}
-        <PrevNext type={'prev'}>&#10094;</PrevNext>
-        <PrevNext type={'next'}>&#10095;</PrevNext>  
+      <Container
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+      >
+        {
+          pages.map((img, idx) => (
+            <Page
+              key={`${img.src}_${idx}`}
+              active={activeIndex === idx}
+            >
+              <Img src={img.src} />
+              {img.text && <Text>{img.text}</Text>}
+            </Page>
+          ))
+        }
+        {
+          activeButton && <>
+            <PrevNext type={'prev'} onClick={onClick}>&#10094;</PrevNext>
+            <PrevNext type={'next'} onClick={onClick}>&#10095;</PrevNext>
+          </>
+        }
       </Container>
-      <DotContainer>
-        {pages.map(_ => (
-          <Dot />
-        ))}
-      </DotContainer>
+      {
+        dotDisplay && <DotContainer>
+          {pages.map((img, idx) => (
+            <Dot key={`${img.src}_${idx}`} active={activeIndex === idx} />
+          ))}
+        </DotContainer>
+      }
     </>
   );
 };
