@@ -1,15 +1,22 @@
 {
   "name": "react-image-pagination",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "This project is a component that can use images like pages",
+  "main": "dist/index.js",
   "scripts": {
     "start": "webpack-dev-server --progress",
     "build": "webpack",
     "type-check": "tsc"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Luffy Yeon",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kimsangyeon/react-image-pagination"
+  },
+  "bugs": {
+    "url": "https://github.com/kimsangyeon/react-image-pagination/issues"
+  },
   "devDependencies": {
     "@babel/cli": "^7.12.10",
     "@babel/core": "^7.12.10",
@@ -31,5 +38,23 @@
     "styled-components": "^5.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
-  }
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "react",
+    "component",
+    "react-component",
+    "pagination",
+    "image",
+    "image-pagination",
+    "react-image-pagination",
+    "swiper",
+    "image-swiper",
+    "react-image-swiper",
+    "slider",
+    "image-slider",
+    "react-image-slider"
+  ]
 }
