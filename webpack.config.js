@@ -4,8 +4,11 @@ module.exports = {
   entry: './src/index.tsx',
   output: {
     path: path.resolve(__dirname, 'dist/js'),
-    filename: 'bundle.js',
+    filename: 'index.js',
     libraryTarget: "commonjs2",
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
   },
   module: {
     rules: [
@@ -23,11 +26,28 @@ module.exports = {
               '@babel/preset-react',
               '@babel/preset-typescript'
             ],
+            plugins: ["babel-plugin-styled-components"]
           }
         }
       }
     ],
   },
-  devtool: 'source-map',
-  mode: 'development',
+  mode: 'production',
+  externals: [
+    // nodeExternals(),
+    {
+      react: {
+        root: 'React',
+        commonjs2: 'react',
+        commonjs: 'react',
+        amd: 'react'
+      },
+      'react-dom': {
+        root: 'ReactDOM',
+        commonjs2: 'react-dom',
+        commonjs: 'react-dom',
+        amd: 'react-dom'
+      },
+    }
+  ]
 };
