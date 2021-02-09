@@ -10,7 +10,7 @@ This project is a component that can use images like pages.
 
 <br>
 
-![react image pagination](./images/sample.png)
+![react image pagination](./images/sample_github.png)
 
 <br><br>
 
