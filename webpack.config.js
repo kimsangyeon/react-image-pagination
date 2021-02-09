@@ -7,6 +7,9 @@ module.exports = {
     filename: 'index.js',
     libraryTarget: "commonjs2",
   },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  },
   module: {
     rules: [
       {
@@ -44,7 +47,7 @@ module.exports = {
         commonjs2: 'react-dom',
         commonjs: 'react-dom',
         amd: 'react-dom'
-      }
+      },
     }
   ]
 };
