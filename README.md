@@ -65,4 +65,4 @@ function App() {
 
 ## License
 
-MIT © [Luffy Yeon](https://github.com/Luffy Yeon)
+MIT © [Luffy Yeon](https://github.com/kimsangyeon)
